@@ -20,6 +20,7 @@ function ContactItem() {
         <>
             <h2>{contact.firstName} {contact.lastName}</h2>
             <p>{contact.street}, {contact.city}</p>
+            <iframe width="400" height="400" src={`https://maps.google.com/maps?q=${contact.latitude}, ${contact.longitude}&output=embed`}></iframe>
         </>
     );
 }

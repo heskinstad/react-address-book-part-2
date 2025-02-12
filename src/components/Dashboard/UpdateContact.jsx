@@ -60,7 +60,7 @@ function UpdateContact() {
         event.preventDefault();
         putContact();
         fetchData();
-        navigate(`/`);
+        navigate(`/contacts/${id}`);
     }
 
     const handleDelete = (event) => {

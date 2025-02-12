@@ -13,10 +13,14 @@ function App() {
     const url = "https://boolean-uk-api-server.fly.dev/heskinstad/contact";
     const [contacts, setContacts] = useState([]);
 
-    const fetchData = async () => {
-        const response = await fetch(url);
-        const jsonData = await response.json();
-        setContacts(jsonData);
+    const fetchData = () => {
+        fetch(url)
+        .then((res) => {
+            return res.json();
+        })
+        .then((jsonData) => {
+            setContacts(jsonData);
+        })
     };
 
     useEffect(() => {
