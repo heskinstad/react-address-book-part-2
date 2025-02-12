@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useContext } from "react"
+import { ContactContext } from "../../App";
 
-function CreateContact(props) {
+function CreateContact() {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [formData, setFormData] = useState({
@@ -10,7 +12,7 @@ function CreateContact(props) {
         street: "",
         city: "",
     })
-    const { fetchData } = props;
+    const { fetchData } = useContext(ContactContext);
 
     const url = "https://boolean-uk-api-server.fly.dev/heskinstad/contact";
 

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useContext } from "react"
+import { ContactContext } from "../../App";
 
-function ContactItem(props) {
+function ContactItem() {
     const [contact, setContact] = useState(null);
     const { id } = useParams();
-    const { contacts } = props;
+    const { contacts } = useContext(ContactContext);
 
     useEffect(() => {
         if (contacts && id) {

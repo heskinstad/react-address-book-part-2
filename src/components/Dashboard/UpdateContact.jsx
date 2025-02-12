@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useContext } from "react"
+import { ContactContext } from "../../App";
 
-function UpdateContact(props) {
+
+function UpdateContact() {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [formData, setFormData] = useState([]);
     const [contact, setContact] = useState(null);
     const { id } = useParams();
-    const { contacts } = props;
-    const { fetchData } = props;
+    const { contacts, fetchData } = useContext(ContactContext);
 
     useEffect(() => {
         if (contacts && id) {

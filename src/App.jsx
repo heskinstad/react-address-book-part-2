@@ -6,6 +6,9 @@ import ContactItem from "./components/Dashboard/ContactItem"
 import CreateContact from "./components/Dashboard/CreateContact"
 import UpdateContact from "./components/Dashboard/UpdateContact"
 
+import { createContext } from "react"
+const ContactContext = createContext()
+
 function App() {
     const url = "https://boolean-uk-api-server.fly.dev/heskinstad/contact";
     const [contacts, setContacts] = useState([]);
@@ -40,15 +43,17 @@ function App() {
             </div>
 
             <div className="content">
-            <Routes>
-                <Route path="/" element={<ContactsList contacts={contacts} />} />
-                <Route path="/contacts/:id" element={<ContactItem contacts={contacts} />} />
-                <Route path="/contacts/new" element={<CreateContact contacts={contacts} fetchData={fetchData} />} />
-                <Route path="/contacts/update/:id" element={<UpdateContact contacts={contacts} fetchData={fetchData} />} />
-            </Routes>
+            <ContactContext.Provider value={ {contacts, setContacts, fetchData} }>
+                <Routes>
+                    <Route path="/" element={<ContactsList />} />
+                    <Route path="/contacts/:id" element={<ContactItem />} />
+                    <Route path="/contacts/new" element={<CreateContact />} />
+                    <Route path="/contacts/update/:id" element={<UpdateContact />} />
+                </Routes>
+            </ContactContext.Provider>
             </div>
         </div>
     );
 }
-
+export { ContactContext };
 export default App;
