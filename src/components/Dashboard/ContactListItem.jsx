@@ -4,9 +4,11 @@ function ContactItem({contact}) {
     return (
         <>
             <li>
-                <h3>
-                    <Link to={`/contacts/${contact.id}`}>{contact.firstName} {contact.lastName}</Link>
-                </h3>
+                <div className='contactListItems'>
+                    <div><Link to={`/contacts/${contact.id}`}>{contact.firstName} {contact.lastName}</Link></div>
+                    <div><Link to={`/contacts/update/${contact.id}`}>Update contact</Link></div>
+                    <div><button>Delete</button></div>
+                </div>
             </li>
         </>
     );

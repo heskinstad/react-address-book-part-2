@@ -4,17 +4,19 @@ import './App.css';
 import ContactsList from "./components/Dashboard/ContactsList"
 import ContactItem from "./components/Dashboard/ContactItem"
 import CreateContact from "./components/Dashboard/CreateContact"
+import UpdateContact from "./components/Dashboard/UpdateContact"
 
 function App() {
     const url = "https://boolean-uk-api-server.fly.dev/heskinstad/contact";
     const [contacts, setContacts] = useState([]);
 
+    const fetchData = async () => {
+        const response = await fetch(url);
+        const jsonData = await response.json();
+        setContacts(jsonData);
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-          const response = await fetch(url);
-          const jsonData = await response.json();
-          setContacts(jsonData);
-        };
         fetchData();
       }, []);
 
@@ -41,7 +43,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<ContactsList contacts={contacts} />} />
                 <Route path="/contacts/:id" element={<ContactItem contacts={contacts} />} />
-                <Route path="/contacts/new" element={<CreateContact />} />
+                <Route path="/contacts/new" element={<CreateContact contacts={contacts} fetchData={fetchData} />} />
+                <Route path="/contacts/update/:id" element={<UpdateContact contacts={contacts} fetchData={fetchData} />} />
             </Routes>
             </div>
         </div>

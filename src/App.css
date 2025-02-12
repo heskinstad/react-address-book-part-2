@@ -22,3 +22,9 @@ div {
 .content {
     grid-area: content;
   }
+.contactListItems {
+  display: flex;
+  margin: 10px;
+  font-size: 30px;
+  height: 20px;
+}
