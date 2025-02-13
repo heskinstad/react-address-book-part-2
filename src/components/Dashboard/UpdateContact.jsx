@@ -35,9 +35,9 @@ function UpdateContact() {
             },
             body: JSON.stringify(formData),
         })
-            .then((res) => res.json())
-            .then((result) => setData(result.rows))
-            .catch((err) => console.log('error'))
+        .then((res) => res.json())
+        .then(() => fetchData())
+        .catch((err) => console.log(err))
     }
 
     const deleteContact = () => {
@@ -48,8 +48,9 @@ function UpdateContact() {
             },
             body: JSON.stringify(formData),
         })
-            .then((res) => res.json())
-            .catch((err) => console.log('error'))
+        .then((res) => res.json())
+        .then(() => fetchData())
+        .catch((err) => console.log(err))
     }
 
     const handleChange = (event) => {
@@ -59,14 +60,12 @@ function UpdateContact() {
     const handleSubmit = (event) => {
         event.preventDefault();
         putContact();
-        fetchData();
         navigate(`/contacts/${id}`);
     }
 
     const handleDelete = (event) => {
         event.preventDefault();
         deleteContact();
-        fetchData();
         navigate(`/`);
     }
 

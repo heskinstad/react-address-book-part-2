@@ -6,16 +6,22 @@ import { useEffect, useState } from "react";
 function ContactsList() {
   const { contacts } = useContext(ContactContext);
   const [filteredContacts, setFilteredContacts] = useState(contacts);
+  const [ value, setValue ] = useState();
 
   const handleFilter = (event) => {
     const value = event.target.value;
-    const filtered = contacts.filter(contact => contact.firstName.toLowerCase().includes(value.toLowerCase()));
-    setFilteredContacts(filtered);
+    setValue(value);
+    /*const filtered = contacts.filter(contact => contact.firstName.toLowerCase().includes(value.toLowerCase()));
+    setFilteredContacts(filtered);*/
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     setFilteredContacts(contacts);
-  }, []);
+  }, []);*/
+
+  var filterList = contacts;
+
+  if (value) filterList = filterList.filter(contact => contact.firstName.toLowerCase().includes(value.toLowerCase()))
 
   return (
     <div>
@@ -26,7 +32,7 @@ function ContactsList() {
         onChange={handleFilter}
       />
       <ul>
-        {filteredContacts.map((contact, index) => (
+        {filterList.map((contact, index) => (
           <ContactItem key={index} contact={contact} />
         ))}
       </ul>

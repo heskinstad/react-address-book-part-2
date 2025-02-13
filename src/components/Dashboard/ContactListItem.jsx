@@ -7,7 +7,6 @@ function ContactItem({contact}) {
                 <div className='contactListItems'>
                     <div><Link to={`/contacts/${contact.id}`}>{contact.firstName} {contact.lastName}</Link></div>
                     <div><Link to={`/contacts/update/${contact.id}`}>Update contact</Link></div>
-                    <div><button>Delete</button></div>
                 </div>
             </li>
         </>

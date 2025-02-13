@@ -12,7 +12,7 @@ function CreateContact() {
         street: "",
         city: "",
     })
-    const { fetchData } = useContext(ContactContext);
+    const { fetchData, contacts, setContacts } = useContext(ContactContext);
 
     const url = "https://boolean-uk-api-server.fly.dev/heskinstad/contact";
 
@@ -24,19 +24,19 @@ function CreateContact() {
             },
             body: JSON.stringify(formData),
         })
-            .then((res) => res.json())
-            .then((result) => setData(result.rows))
-            .catch((err) => console.log('error'))
+        .then((res) => res.json())
+        .then(() => fetchData())
+        .catch((err) => console.log(err))
+            
     }
 
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         postContact();
-        fetchData();
         navigate(`/`);
     }
 
